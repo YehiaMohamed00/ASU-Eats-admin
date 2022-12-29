@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="158dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="@drawable/card_simulation"
+    android:elevation="8dp"
+    >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="66"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="75">
+
+            <TextView
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:maxEms="5"
+                android:textColor="@color/text_color"
+                android:id="@+id/ori_orderID_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="order ID"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ori_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="order date"
+                android:textColor="@color/text_color"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ori_orderID_tv" />
+
+            <TextView
+                android:id="@+id/ori_gate_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="order gate"
+                android:textColor="@color/text_color"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/ori_orderID_tv"
+                app:layout_constraintTop_toBottomOf="@+id/ori_orderID_tv" />
+
+            <TextView
+                android:id="@+id/ori_status_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="order status"
+                android:textColor="@color/text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/ori_date_tv"
+                app:layout_constraintTop_toBottomOf="@+id/ori_date_tv" />
+
+            <TextView
+                android:id="@+id/ori_period_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="order period"
+                android:textColor="@color/text_color"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/ori_gate_tv"
+                app:layout_constraintTop_toBottomOf="@+id/ori_gate_tv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:background="@drawable/options_show"
+            android:textColor="@color/white"
+            android:id="@+id/ori_optionShow_tv"
+            android:layout_width="match_parent"
+            android:layout_weight="25"
+            android:layout_height="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="5dp"
+            android:paddingTop="6dp"
+            android:text="show options"
+            android:textSize="22sp"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

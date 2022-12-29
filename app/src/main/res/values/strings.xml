@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Restaurants Admin</string>
+    <string name="order_id">Order ID</string>
+    <string name="recieved_order">Recieved Orders</string>
+
+
+</resources>
