@@ -28,7 +28,7 @@
             <TextView
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:maxEms="5"
+                android:maxEms="6"
                 android:textColor="@color/text_color"
                 android:id="@+id/ori_orderID_tv"
                 android:layout_width="wrap_content"

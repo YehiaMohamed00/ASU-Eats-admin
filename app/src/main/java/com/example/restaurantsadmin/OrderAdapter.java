@@ -31,7 +31,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
-//        String restImg= ordersList.get(position).getRestImg();
         String orderID, orderDate, orderGate, orderTimePeriod, orderStatus;
         orderID = ordersList.get(position).getOrderID();
         orderDate = ordersList.get(position).getOrderDate();
@@ -39,16 +38,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         orderTimePeriod = ordersList.get(position).getOrderTimePeriod();
         orderStatus = ordersList.get(position).getOrderStatus();
 
-//        String restName = ordersList.get(position).getOrderID();
-//        String restCousine = ordersList.get(position).getRestCousine();
-//        String restPriceRange =  ordersList.get(position).getRestPriceRange();
-
-
-//        Glide.with(holder.RVHrestImg.getContext()).load(restImg).into(holder.RVHrestImg);
-//        holder.RVHrestImg.setImageResource(restImg);
-//        holder.RVHrestName.setText(restName);
-//        String concatenated = restCousine + ", " + restPriceRange;
-//        holder.RVHrestCousineNrestPriceRange.setText(concatenated);
         holder.VHorderID.setText(orderID);
         holder.VHorderDate.setText(orderDate);
         holder.VHorderGate.setText(orderGate);
@@ -63,8 +52,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-//        ImageView RVHrestImg;
-//        TextView RVHrestName, RVHrestCousineNrestPriceRange;
         TextView VHorderID, VHorderDate, VHorderGate, VHorderTimePeriod, VHorderStatus;
         OnOrderListener onOrderListener;
 
@@ -82,10 +69,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         @Override
         public void onClick(View view) {
-            onOrderListener.onRestClick(getAdapterPosition());
+            onOrderListener.onOrderClick(getAdapterPosition());
         }
     }
     public interface OnOrderListener {
-        void onRestClick(int position);
+        void onOrderClick(int position);
     }
 }

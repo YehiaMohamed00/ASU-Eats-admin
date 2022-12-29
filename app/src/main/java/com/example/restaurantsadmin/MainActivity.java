@@ -16,20 +16,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OrderAdapter.OnOrderListener {
+    Calendar calendar;
     List<Order> ordersList;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
-    OrderAdapter restaurantAdapter;
+    OrderAdapter orderAdapter;
+    Boolean isAcceptableTime = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        setContentView(R.layout.order_options);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference orderRef = database.getReference("orders");
@@ -40,14 +42,13 @@ public class MainActivity extends AppCompatActivity implements OrderAdapter.OnOr
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        restaurantAdapter = new OrderAdapter(ordersList, this);
-        recyclerView.setAdapter(restaurantAdapter);
-        restaurantAdapter.notifyDataSetChanged();
+        orderAdapter = new OrderAdapter(ordersList, this);
+        recyclerView.setAdapter(orderAdapter);
+        orderAdapter.notifyDataSetChanged();
 
         orderRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int i = 0;
                 for (DataSnapshot sp: snapshot.getChildren()){
                     for (DataSnapshot so: sp.getChildren()){
                         HashMap order = (HashMap)so.getValue();
@@ -55,14 +56,9 @@ public class MainActivity extends AppCompatActivity implements OrderAdapter.OnOr
                                 order.get("orderDate").toString(), order.get("orderStatus").toString(),
                                 order.get("orderGate").toString(), order.get("orderTimePeriod").toString()));
                     }
-//                    MainActivity.restaurantList.get(i).setDishList(dishList);
-//                    Log.d("yehiaaDebug = dish", MainActivity.restaurantList.get(i).toString());
-//                    dishList = new ArrayList<>();
-//                    Log.d("yehiaaDebug = dish", MainActivity.restaurantList.get(i).toString());
-//                    i++;
                 }
                 Log.d("yehiaaDebug = dish", ordersList.toString());
-                restaurantAdapter.notifyDataSetChanged();
+                orderAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -70,17 +66,34 @@ public class MainActivity extends AppCompatActivity implements OrderAdapter.OnOr
 
             }
         });
-
-
     }
 
     @Override
-    public void onRestClick(int position) {
-        Intent i = new Intent(this, OptionsActivity.class);
-        i.putExtra("orderID", ordersList.get(position).getOrderID());
-        i.putExtra("orderStatus",ordersList.get(position).getOrderStatus());
-        i.putExtra("userID",ordersList.get(position).getUserID());
-        startActivity(i);
+    protected void onResume() {
+        super.onResume();
+        orderAdapter.notifyDataSetChanged();
+    }
 
+    @Override
+    public void onOrderClick(int position) {
+        calendar = Calendar.getInstance();
+        int currHour = calendar.get(Calendar.HOUR_OF_DAY);
+        int currMin = calendar.get(Calendar.MINUTE);
+        if ( ordersList.get(position).getOrderTimePeriod().equals("12AM")){
+            if(currHour <= 10 && currMin <= 30){
+                isAcceptableTime = true;
+            }
+        }else if( ordersList.get(position).getOrderTimePeriod().equals("3PM")){
+            if(currHour <= 13 && currMin <= 30){
+                isAcceptableTime = true;
+            }
+        }
+
+        if(isAcceptableTime){
+            Intent i = new Intent(this, OptionsActivity.class);
+            i.putExtra("orderID", ordersList.get(position).getOrderID());
+            i.putExtra("userID",ordersList.get(position).getUserID());
+            startActivity(i);
+        }
     }
 }

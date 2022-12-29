@@ -54,97 +54,88 @@ public class OptionsActivity extends AppCompatActivity {
         oo_delivered_btn = findViewById(R.id.oo_delivered_btn);
 
 
-        oo_package_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(orderStatus.equals("packaged") || orderStatus.equals("on-way") || orderStatus.equals("delivered")){
+        oo_package_btn.setOnClickListener(view -> {
+            if(orderStatus.equals("packaged") || orderStatus.equals("on-way") || orderStatus.equals("delivered")){
 //                    oo_package_btn.setEnabled(false);
-                    Toast.makeText(OptionsActivity.this, "Order is " + orderStatus, Toast.LENGTH_SHORT).show();
-                } else{
-                    // Create a map to store the new value of the attribute
-                    Map<String, Object> updates = new HashMap<>();
-                    updates.put("orderStatus", "packaged");
+                Toast.makeText(OptionsActivity.this, "Order is " + orderStatus, Toast.LENGTH_SHORT).show();
+            } else{
+                // Create a map to store the new value of the attribute
+                Map<String, Object> updates = new HashMap<>();
+                updates.put("orderStatus", "packaged");
 
-                    // Update the value of the attribute
-                    FirebaseDatabase.getInstance().getReference("orders").child(userID).child(orderID).updateChildren(updates)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    // Update successful
-                                    Toast.makeText(OptionsActivity.this, "updated in Firebase", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    // Update failed
-                                    Toast.makeText(OptionsActivity.this, "failed to update", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
+                // Update the value of the attribute
+                FirebaseDatabase.getInstance().getReference("orders").child(userID).child(orderID).updateChildren(updates)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Update successful
+                                Toast.makeText(OptionsActivity.this, "updated in Firebase", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Update failed
+                                Toast.makeText(OptionsActivity.this, "failed to update", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
 
-        oo_onWay_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(orderStatus.equals("placed") || orderStatus.equals("on-way") || orderStatus.equals("delivered")){
+        oo_onWay_btn.setOnClickListener(view -> {
+            if(orderStatus.equals("placed") || orderStatus.equals("on-way") || orderStatus.equals("delivered")){
 //                    oo_onWay_btn.setEnabled(false);
-                    Toast.makeText(OptionsActivity.this, "Order is " + orderStatus, Toast.LENGTH_SHORT).show();
-                } else{
+                Toast.makeText(OptionsActivity.this, "Order is " + orderStatus, Toast.LENGTH_SHORT).show();
+            } else{
 
-                    // Create a map to store the new value of the attribute
-                    Map<String, Object> updates = new HashMap<>();
-                    updates.put("orderStatus", "on-way");
+                // Create a map to store the new value of the attribute
+                Map<String, Object> updates = new HashMap<>();
+                updates.put("orderStatus", "on-way");
 
-                    // Update the value of the attribute
-                    FirebaseDatabase.getInstance().getReference("orders").child(userID).child(orderID).updateChildren(updates)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    // Update successful
-                                    Toast.makeText(OptionsActivity.this, "updated in Firebase", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    // Update failed
-                                    Toast.makeText(OptionsActivity.this, "failed to update", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
+                // Update the value of the attribute
+                FirebaseDatabase.getInstance().getReference("orders").child(userID).child(orderID).updateChildren(updates)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Update successful
+                                Toast.makeText(OptionsActivity.this, "updated in Firebase", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Update failed
+                                Toast.makeText(OptionsActivity.this, "failed to update", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
 
-        oo_delivered_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(orderStatus.equals("placed") || orderStatus.equals("packaged") || orderStatus.equals("delivered")){
+        oo_delivered_btn.setOnClickListener(view -> {
+            if(orderStatus.equals("placed") || orderStatus.equals("packaged") || orderStatus.equals("delivered")){
 //                    oo_onWay_btn.setEnabled(false);
-                    Toast.makeText(OptionsActivity.this, "Order is " + orderStatus, Toast.LENGTH_SHORT).show();
-                } else{
-                    // Create a map to store the new value of the attribute
-                    Map<String, Object> updates = new HashMap<>();
-                    updates.put("orderStatus", "delivered");
+                Toast.makeText(OptionsActivity.this, "Order is " + orderStatus, Toast.LENGTH_SHORT).show();
+            } else{
+                // Create a map to store the new value of the attribute
+                Map<String, Object> updates = new HashMap<>();
+                updates.put("orderStatus", "delivered");
 
-                    // Update the value of the attribute
-                    FirebaseDatabase.getInstance().getReference("orders").child(userID).child(orderID).updateChildren(updates)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    // Update successful
-                                    Toast.makeText(OptionsActivity.this, "updated in Firebase", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    // Update failed
-                                    Toast.makeText(OptionsActivity.this, "failed to update", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
+                // Update the value of the attribute
+                FirebaseDatabase.getInstance().getReference("orders").child(userID).child(orderID).updateChildren(updates)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Update successful
+                                Toast.makeText(OptionsActivity.this, "updated in Firebase", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Update failed
+                                Toast.makeText(OptionsActivity.this, "failed to update", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
     }
