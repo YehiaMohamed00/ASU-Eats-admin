@@ -56,7 +56,6 @@ public class OptionsActivity extends AppCompatActivity {
 
         oo_package_btn.setOnClickListener(view -> {
             if(orderStatus.equals("packaged") || orderStatus.equals("on-way") || orderStatus.equals("delivered")){
-//                    oo_package_btn.setEnabled(false);
                 Toast.makeText(OptionsActivity.this, "Order is " + orderStatus, Toast.LENGTH_SHORT).show();
             } else{
                 // Create a map to store the new value of the attribute
@@ -84,7 +83,6 @@ public class OptionsActivity extends AppCompatActivity {
 
         oo_onWay_btn.setOnClickListener(view -> {
             if(orderStatus.equals("placed") || orderStatus.equals("on-way") || orderStatus.equals("delivered")){
-//                    oo_onWay_btn.setEnabled(false);
                 Toast.makeText(OptionsActivity.this, "Order is " + orderStatus, Toast.LENGTH_SHORT).show();
             } else{
 
@@ -113,7 +111,6 @@ public class OptionsActivity extends AppCompatActivity {
 
         oo_delivered_btn.setOnClickListener(view -> {
             if(orderStatus.equals("placed") || orderStatus.equals("packaged") || orderStatus.equals("delivered")){
-//                    oo_onWay_btn.setEnabled(false);
                 Toast.makeText(OptionsActivity.this, "Order is " + orderStatus, Toast.LENGTH_SHORT).show();
             } else{
                 // Create a map to store the new value of the attribute
